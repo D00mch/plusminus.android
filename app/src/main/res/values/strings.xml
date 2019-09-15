@@ -1,0 +1,19 @@
+<resources>
+    <string name="empty">""</string>
+    <string name="app_name">Plusminusme</string>
+    <string name="register_success">Registration successful!</string>
+    <string name="login_success">Login successful!</string>
+    <string name="login_hint">enter login</string>
+    <string name="login_error_label">Error occurred while logging</string>
+    <string name="password_hint">enter password</string>
+    <string name="password_confirm">confirm the password</string>
+    <string name="register_button">Register</string>
+
+    <string name="login_req_length">Login must be at least 4 characters</string>
+    <string name="login_req_chars">Login must consist of Latin characters and symbols: - _ % +</string>
+    <string name="password_req_length">Password length must be at least 4 characters</string>
+    <string name="password_req_digit">Password must contain at least one digit</string>
+    <string name="password_req_lower">Password must contain at least one lower case letter</string>
+    <string name="password_req_upper">Password must contain at least one UPPER case letter</string>
+    <string name="password_req_confirm">Confirmed password doesn\'t match</string>
+</resources>

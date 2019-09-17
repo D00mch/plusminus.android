@@ -1,8 +1,8 @@
-package com.livermor.plusminusme.network
+package com.livermor.plusminus.network
 
-import com.livermor.plusminusme.model.RequestRegister
-import com.livermor.plusminusme.model.ResponseBase
-import com.livermor.plusminusme.model.ResponseState
+import com.livermor.plusminus.model.RequestRegister
+import com.livermor.plusminus.model.ResponseBase
+import com.livermor.plusminus.model.ResponseState
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET

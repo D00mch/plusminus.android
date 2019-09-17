@@ -1,4 +1,4 @@
-package com.livermor.plusminusme
+package com.livermor.plusminus
 
 import org.junit.Test
 

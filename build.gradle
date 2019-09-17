@@ -22,6 +22,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 
@@ -31,11 +32,10 @@ task clean(type: Delete) {
 
 ext {
     minSdk = "21"
-    compileSdk = 29
+    compileSdk = 28
     targetSdk = 29
     buildTool = "29.0.0"
     androidX = "1.1.0"
-    recycler = "1.0.0"
     retrofit = "2.6.1"
     kotPref = "2.9.1"
 }

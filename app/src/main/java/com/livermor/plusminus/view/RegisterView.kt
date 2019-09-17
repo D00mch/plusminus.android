@@ -1,4 +1,4 @@
-package com.livermor.plusminusme.view
+package com.livermor.plusminus.view
 
 import android.content.Context
 import android.graphics.Color
@@ -6,7 +6,7 @@ import android.text.InputType
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
-import com.livermor.plusminusme.R
+import com.livermor.plusminus.R
 import trikita.anvil.Anvil
 import trikita.anvil.DSL.*
 import trikita.anvil.RenderableView

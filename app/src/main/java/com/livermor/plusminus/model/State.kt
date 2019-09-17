@@ -1,8 +1,8 @@
-package com.livermor.plusminusme.model
+package com.livermor.plusminus.model
 
 
 import com.google.gson.annotations.SerializedName
-import com.livermor.plusminusme.rand
+import com.livermor.plusminus.rand
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
 
@@ -43,6 +43,8 @@ fun State.move(i: Int): State = copy(
     hrzPoints = if (isHrzTurn) hrzPoints + board[i] else hrzPoints,
     vrtPoints = if (isHrzTurn) vrtPoints else vrtPoints + board[i]
 )
+
+fun State.move(x: Int, y: Int): State = move(xy2index(x, y, rowsCount()))
 
 fun State.moveVal(i: Int): Int = board[i]
 fun State.anyMoves(): Boolean = validMoves.isNotEmpty()

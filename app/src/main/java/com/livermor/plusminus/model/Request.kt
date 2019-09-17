@@ -1,4 +1,4 @@
-package com.livermor.plusminusme.model
+package com.livermor.plusminus.model
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,9 +1,9 @@
-package com.livermor.plusminusme
+package com.livermor.plusminus.rules
 
-import com.livermor.plusminusme.model.State
-import com.livermor.plusminusme.model.anyMoves
-import com.livermor.plusminusme.model.move
-import com.livermor.plusminusme.model.moveVal
+import com.livermor.plusminus.model.State
+import com.livermor.plusminus.model.anyMoves
+import com.livermor.plusminus.model.move
+import com.livermor.plusminus.model.moveVal
 
 private fun moveMax(state: State): State {
     val maxMove: Int? = state.validMoves.maxBy { mv -> state.moveVal(mv) }

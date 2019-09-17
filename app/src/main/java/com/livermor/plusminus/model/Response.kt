@@ -1,4 +1,4 @@
-package com.livermor.plusminusme.model
+package com.livermor.plusminus.model
 
 
 data class ResponseState(val state: State)

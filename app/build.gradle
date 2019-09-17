@@ -36,7 +36,6 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
     implementation 'co.trikita:anvil-sdk21:0.5.0'
-    implementation 'com.github.Liverm0r:BehavioRule:1.0.1'
 
     // core
     implementation "com.chibatching.kotpref:kotpref:$kotPref"

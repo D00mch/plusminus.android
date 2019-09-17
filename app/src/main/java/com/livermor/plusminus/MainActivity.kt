@@ -13,7 +13,6 @@ import com.livermor.plusminus.network.PublicApi
 import com.livermor.plusminus.network.on
 import com.livermor.plusminus.view.RegisterView
 import com.livermor.plusminus.view.board
-import kotlinx.android.synthetic.main.activity_scrolling.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import trikita.anvil.Anvil
@@ -23,24 +22,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_scrolling)
         Anvil.mount(findViewById<View>(android.R.id.content)) {
-            xml(R.layout.activity_scrolling) {
-                                withId(R.id.flContentId) {
-                    board(AppDb.offlineState, onClick = { turn, state, x, y ->
-                        AppDb.offlineState = AppDb.offlineState.move(x, y)
-                        Log.i(TAG(), "board clicked with x $x, y $y")
-                    })
-                }
-            }
+            board(AppDb.offlineState, onClick = { turn, state, x, y ->
+                AppDb.offlineState = AppDb.offlineState.move(x, y)
+                Log.i(TAG(), "board clicked with x $x, y $y")
+            })
         }
-
-
-        setSupportActionBar(tToolbar)
-        supportActionBar?.run { setDisplayShowTitleEnabled(false) }
-        val ab = findViewById<Toolbar>(R.id.tToolbar)
-        val tv = ab.getChildAt(0)
-        Log.i(TAG(), "onCreate: ab: $ab, tv $tv")
     }
 
     // TODO: clear below

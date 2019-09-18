@@ -9,7 +9,12 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        context = this
         Kotpref.init(this)
         Kotpref.gson = Gson()
+    }
+
+    companion object {
+        lateinit var context: App
     }
 }

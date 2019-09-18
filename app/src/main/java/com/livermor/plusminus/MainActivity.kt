@@ -3,30 +3,28 @@ package com.livermor.plusminus
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import com.livermor.plusminus.R
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import com.chibatching.kotpref.bulk
 import com.livermor.plusminus.model.RequestRegister
-import com.livermor.plusminus.model.move
 import com.livermor.plusminus.network.PublicApi
 import com.livermor.plusminus.network.on
+import com.livermor.plusminus.screen.Screen
+import com.livermor.plusminus.screen.attachSinglePlayer
 import com.livermor.plusminus.view.RegisterView
-import com.livermor.plusminus.view.board
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import trikita.anvil.Anvil
-import trikita.anvil.DSL.*
+import java.lang.IllegalStateException
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Anvil.mount(findViewById<View>(android.R.id.content)) {
-            board(AppDb.offlineState, onClick = { turn, state, x, y ->
-                AppDb.offlineState = AppDb.offlineState.move(x, y)
-                Log.i(TAG(), "board clicked with x $x, y $y")
-            })
+            when (AppDb.screen) {
+                Screen.SINGLE -> attachSinglePlayer()
+                else -> throw IllegalStateException("unknown screen")
+            }
         }
     }
 

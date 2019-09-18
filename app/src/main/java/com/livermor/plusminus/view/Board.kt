@@ -17,9 +17,9 @@ import kotlin.math.min
 /**
  * @return [GridLayout] with [State].board cells represented as TextViews
  */
-fun board(
+inline fun attachBoard(
     state: State,
-    onClick: (turn: Boolean, state: State, x: Int, y: Int) -> Unit
+    crossinline onClick: (turn: Boolean, state: State, x: Int, y: Int) -> Unit
 ) {
     val (board, _, _, _, isHrzTurn, moves) = state
     val screenMax = Resources.getSystem().displayMetrics.run {
@@ -40,10 +40,9 @@ fun board(
                 val turn = valid && isHrzTurn
                 val hidden = moves.contains(i)
                 val v = board[i]
-
                 textView {
                     Anvil.currentView<TextView>().run {
-                        bgColor(color(valid, turn))
+                        bgColor(cellColor(valid, turn))
                         layoutParams = (layoutParams as GridLayout.LayoutParams).apply {
                             width = (cellDiam - 2 * margin).toInt()
                             height = (cellDiam - 2 * margin).toInt()
@@ -64,7 +63,7 @@ fun board(
     }
 }
 
-private fun color(valid: Boolean, turn: Boolean): Int = when {
+fun cellColor(valid: Boolean, turn: Boolean): Int = when {
     valid && turn -> R.color.blue
     valid -> R.color.red
     else -> R.color.grey

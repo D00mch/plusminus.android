@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
 import com.livermor.plusminus.R
+import com.livermor.plusminus.toast
 import trikita.anvil.Anvil
 import trikita.anvil.DSL.*
 import trikita.anvil.RenderableView
@@ -53,7 +54,7 @@ class RegisterView(
         isLoggingIn = false
         loginFailed = success.not()
         if (success) {
-            Toast.makeText(context, R.string.register_success, Toast.LENGTH_SHORT).show()
+            toast(R.string.register_success)
         }
         Anvil.render()
     }

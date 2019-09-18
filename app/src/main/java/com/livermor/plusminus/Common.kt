@@ -23,10 +23,12 @@ fun toast(str: String) {
     Toast.makeText(App.context, str, Toast.LENGTH_SHORT).show()
 }
 
-fun task(f: () -> Unit): Runnable = Runnable { f() }.apply { uiHandler.post(this) }
+fun Runnable.task(): Runnable = this.apply { uiHandler.post(this) }
+fun (() -> Unit).task(): Runnable = Runnable { this() }.task()
 
-fun taskAfter(millis: Long, f: () -> Unit): Runnable
-        = Runnable { f() }.also { task -> uiHandler.postDelayed(task, millis) }
+fun Runnable.taskAfter(millis: Long): Runnable = apply { uiHandler.postDelayed(this, millis) }
 
-fun taskCancel(task: Runnable): Unit = uiHandler.removeCallbacks(task)
+fun (() -> Unit).taskAfter(millis: Long): Runnable = Runnable { this() }.taskAfter(millis)
+
+fun Runnable.taskCancel(): Unit = uiHandler.removeCallbacks(this)
 

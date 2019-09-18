@@ -48,6 +48,6 @@ private class AnvilUpdateDelegate<T : Any?>(val prefDelegate: ReadWriteProperty<
     override fun setValue(thisRef: KotprefModel, property: KProperty<*>, value: T) {
         pendingUpdates[property.name] = { prefDelegate.setValue(thisRef, property, value) }
         cache = value
-        task { Anvil.render() }
+        { Anvil.render() }.task()
     }
 }

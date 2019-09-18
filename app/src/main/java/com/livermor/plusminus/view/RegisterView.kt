@@ -56,7 +56,6 @@ class RegisterView(
         if (success) {
             toast(R.string.register_success)
         }
-        Anvil.render()
     }
 
     override fun view() {

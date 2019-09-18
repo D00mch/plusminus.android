@@ -28,6 +28,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onStop() {
+        super.onStop()
+        AppDb.persist()
+    }
+
     // TODO: clear below
 
     val retrofit = Retrofit.Builder()

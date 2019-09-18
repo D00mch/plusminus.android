@@ -5,13 +5,15 @@ import com.livermor.plusminus.model.State
 import com.livermor.plusminus.model.anyMoves
 import trikita.anvil.Anvil
 
+private var moveRunnable: Runnable? = null
+
 fun onMove(state: State) {
     val (board, _, _, _, isHrzTurn, moves) = state
     if (state.anyMoves()) {
         if (isHrzTurn.not()) {
-            taskAfter(500L + rand.nextInt(750)) {
+            moveRunnable?.let { taskCancel(it) }
+            moveRunnable = taskAfter(500L + rand.nextInt(750)) {
                 AppDb.offlineState = AppDb.offlineState.moveBot()
-                Anvil.render()
             }
         }
     } else {

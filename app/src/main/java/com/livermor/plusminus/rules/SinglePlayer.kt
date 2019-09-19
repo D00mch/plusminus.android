@@ -13,7 +13,7 @@ fun onMove(state: State) {
             moveRunnable?.taskCancel()
             moveRunnable = {
                 AppDb.offlineState = AppDb.offlineState.moveBot()
-            }.taskAfter(500L + rand.nextInt(750))
+            }.taskAfter(1000L + rand.nextInt(750))
         }
     } else {
         { showResult(state) }.task()

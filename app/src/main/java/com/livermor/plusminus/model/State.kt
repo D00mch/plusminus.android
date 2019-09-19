@@ -36,6 +36,7 @@ fun State.size(): Int = board.count
 fun State.isStart(): Boolean = moves.isEmpty()
 
 fun State.isValidMove(i: Int): Boolean = validMoves.contains(i)
+fun State.isValidMove(x: Int, y: Int): Boolean = isValidMove(xy2index(x, y, rowsCount()))
 
 fun State.move(i: Int): State = copy(
     moves = moves.toPersistentList().add(i),

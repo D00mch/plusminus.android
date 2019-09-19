@@ -1,5 +1,6 @@
 package com.livermor.plusminus.screen
 
+import android.view.Gravity
 import android.widget.LinearLayout
 import com.livermor.plusminus.AppDb
 import com.livermor.plusminus.model.generateState
@@ -12,24 +13,4 @@ import trikita.anvil.BaseDSL.MATCH
 import trikita.anvil.DSL.*
 
 fun attachSinglePlayer() {
-    onMove(AppDb.offlineState)
-    linearLayout {
-        size(MATCH, MATCH)
-        orientation(LinearLayout.VERTICAL)
-
-        attachBoard(AppDb.offlineState, onClick = { turn, state, x, y ->
-            if (turn) {
-                if (AppDb.offlineState.isValidMove(x, y)) {
-                    AppDb.offlineState = AppDb.offlineState.move(x, y)
-                }
-            } else {
-                toast("mind your manners!")
-            }
-        })
-
-        button {
-            text("reset")
-            onClick { AppDb.offlineState = generateState(6) }
-        }
-    }
 }

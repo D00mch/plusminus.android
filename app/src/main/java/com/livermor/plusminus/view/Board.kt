@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.livermor.plusminus.R
 import com.livermor.plusminus.model.*
 import trikita.anvil.Anvil
+import trikita.anvil.BaseDSL
 import kotlin.math.min
 
 /**
@@ -24,13 +25,15 @@ inline fun attachBoard(
     val (board, _, _, _, isHrzTurn, moves) = state
     val screenMax = Resources.getSystem().displayMetrics.run {
         min(widthPixels.toFloat(), heightPixels * 0.8f)
-    }
+    } - defaultMar
     val cellDiam = screenMax / board.rowSize
     val margin = dip(3)
 
     val i2anim = state.animation()
 
     gridLayout {
+        size(MATCH, WRAP)
+        padding(defaultMar/2)
         clipChildren(true)
         columnCount(board.rowSize)
         rowCount(board.rowSize)
@@ -78,6 +81,7 @@ fun cellColor(valid: Boolean, turn: Boolean): Int = when {
 }
 
 typealias Animator = (view: View, callback: () -> Unit) -> Unit
+
 const val ANIM_START_DELAY = 300L
 const val SHIFT_DELAY = 60L
 

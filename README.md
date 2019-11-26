@@ -5,13 +5,16 @@ Check web implementation on [plusminus.me][1]
 
 ## Warning (don't look the code until you read this)
 
-I am experimenting with this one, trying to solve basic android problems with different kinda functional approach.
+I am experimenting with this one, trying to solve basic android problems with functional approach.
 
-Saving state (to survive screen rotations or destruction due to low memory) is handled by having AppDb object, which is persisted on stop event (single activity onStop).
-
-Views and Screens (Presenters) are represented as functions.
+Saving state (to survive screen rotations) is handled by having 
+AppDb object, which is persisted on activity onStop event.
 
 Ui is updated when AppDb changes.
+
+Business logic is implemented with event and effect Handlers.
+
+Dispatchers listen for UI messages and update the AppDb store, delegating decisions to handlers. 
 
 I am also trying to avoid using xml for ui by relying on [Anvil][2] library. 
 

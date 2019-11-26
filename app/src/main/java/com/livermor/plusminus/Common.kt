@@ -1,8 +1,6 @@
 package com.livermor.plusminus
 
 import android.os.Handler
-import android.os.HandlerThread
-import android.os.Looper
 import android.widget.Toast
 import androidx.annotation.StringRes
 import java.util.*

@@ -4,28 +4,44 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.chibatching.kotpref.bulk
+import com.livermor.plusminus.db.AppDb
 import com.livermor.plusminus.model.RequestRegister
 import com.livermor.plusminus.network.PublicApi
 import com.livermor.plusminus.network.on
-import com.livermor.plusminus.screen.Screen
-import com.livermor.plusminus.screen.attachSinglePlayer
+import com.livermor.plusminus.screen.data.DataScreenFragment
+import com.livermor.plusminus.screen.game.GameScreenFragment
 import com.livermor.plusminus.view.RegisterView
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import trikita.anvil.Anvil
-import java.lang.IllegalStateException
 
 class MainActivity : AppCompatActivity() {
+    private val gameScreen by lazy { GameScreenFragment() }
+    private val dataScreen by lazy { DataScreenFragment() }
+    private var prevFrag: Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Anvil.mount(findViewById<View>(android.R.id.content)) {
-            when (AppDb.screen) {
-                Screen.SINGLE -> attachSinglePlayer()
-                else -> throw IllegalStateException("unknown screen")
-            }
-        }
+        setContentView(R.layout.activity_main)
+
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.flRootContent, dataScreen, dataScreen.javaClass.name)
+            .add(R.id.flRootContent, gameScreen, gameScreen.javaClass.name)
+            .commit()
+        prevFrag = gameScreen
+
+        tvDataScreen.setUpScreenClick(dataScreen)
+        tvGameScreen.setUpScreenClick(gameScreen)
+    }
+
+    private fun View.setUpScreenClick(screen: Fragment) = setOnClickListener {
+        val transaction = supportFragmentManager.beginTransaction()
+        prevFrag?.let { transaction.hide(it) }
+        transaction.show(screen).commit()
+        prevFrag = screen
     }
 
     override fun onStop() {
